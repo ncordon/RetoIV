@@ -1,0 +1,62 @@
+\documentclass[a4paper,10pt]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{textcomp}
+\usepackage{listings}
+\usepackage{graphicx}
+\hyphenation{re-fe-ren-cia}
+
+\everymath{\displaystyle}
+\def\O{\mathcal{O}}
+\def\hora{3,6\cdot10^{9}}
+\def\dia{8,64\cdot10^{10}}
+\def\semana{6,048\cdot10^{11}}
+\def\anio{3,15\cdot10^{13}}
+\def\anios{3,15\cdot10^{16}}
+\def\Problema#1#2{\textbf{Problema #1} \textsl{#2}\\}
+\def\C#1{\texttt{#1}}
+\def\figurename{Figura}
+%opening
+\title{Reto 1: Eficiencia}
+\author{Francisco David Charte Luque\and
+        Ignacio Cordón Castillo}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+
+ \item Diseñar un procedimiento inorden no recursivo a imagen y semejanza
+ del procedimiento preorden no recursivo que el profesor diseñó en la clase:
+ 
+ \leftskip=1cm
+ \begin{verbatim}
+ void inordenNR(const ArbolBinario<int>& a){
+    ArbolBinario<int>::Nodo actual;
+    stack<ArbolBinario<int>::Nodo> p;
+    
+    actual=a.raiz();
+    p.push(actual);
+    
+    while (!p.empty()){
+      if (a.izquierda(actual)!=ArbolBinario<int>::nodo_nulo)
+        actual= a.izquierda(actual);
+        p.push(actual);
+      else {
+        cout << a.etiqueta(actual) << ' ';
+        p.pop();
+        if (!p.empty()){
+          cout << a.etiqueta(p.top()) << ' ';
+          actual=a.derecha(p.top());
+          p.pop();
+          p.push(actual);
+        }
+      }
+    }
+  }
+ 
+ \end{verbatim}
+\end{enumerate}
+\end{document}
