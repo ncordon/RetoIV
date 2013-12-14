@@ -123,34 +123,29 @@ void Niveles(const ArbolBinario<Tbase> & a){
 void inordenNR(const ArbolBinario<int>& a){
     ArbolBinario<int>::Nodo actual;
     stack<ArbolBinario<int>::Nodo> p;
-    
+    bool subiendo = false;    
+
     actual=a.raiz();
     p.push(0);
     p.push(actual);
     
-    while (actual!=0){
-        if (a.izquierda(actual)!=0){
-            actual= a.izquierda(actual);
+    while (actual != 0){
+        if (a.izquierda(actual) != 0 && !subiendo){
+            // Pasamos a manejar el hijo izquierdo
+            actual = a.izquierda(actual);
             p.push(actual);
-        }
-        else{
+        } else {
             cout << a.etiqueta(actual) << ' ';
-            if (a.derecha(actual)!=0){
-                actual=a.derecha(actual);
-                p.pop();
+            p.pop();
+            subiendo = true;
+            
+            if (a.derecha(actual) != 0) {
+                // Pasamos a manejar el hijo derecho
+                actual = a.derecha(actual);
                 p.push(actual);
-            }
-            else{
-                p.pop();
-                actual=p.top();
-
-                // Mostramos el padre, nos vamos al hermano (excepto si se trataba de la raíz)
-                if (actual != 0) {
-                        cout << a.etiqueta(actual) << ' ';
-                        p.pop();
-                        actual = a.derecha(actual);
-                        p.push(actual);
-                }
+                subiendo = false;
+            } else { // Trataremos de saltar al hermano
+                actual = p.top();
             }
         }
     }
@@ -189,7 +184,7 @@ int main(int argc, char *argv[]){
 
 
   cout << "Introduce el arbol en el formato:" << endl;
-  cout << "n 1 n 2 n 4 x x n 5 x n 8 x x n 3 n 6 x x n 7 x x" << endl;
+  cout << "n 1 n 2 n 4 x x n 5 n 6 x x x n 3 n 7 x n 8 x x n 9 n 10 x x n 11 x x" << endl;
   cin >> a; 
 	
   cout << "El arbol: " << a << " tiene recorridos:" << endl;	
