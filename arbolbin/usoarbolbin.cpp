@@ -15,8 +15,7 @@ void preorden(const ArbolBinario<Tbase>& a,
     preorden(a,a.derecha(n));
   }
 }
-     
-   
+
 template <class Tbase>
 void inorden(const ArbolBinario<Tbase>& a, 
              const typename ArbolBinario<Tbase>::Nodo n){
@@ -108,7 +107,7 @@ void Niveles(const ArbolBinario<Tbase> & a){
 
 
 // Formato de entrada: n 1 n 2 n 4 x x n 5 x n 8 x x n 3 n 6 x x n 7 x x
-//          El árbol: n 1 n 2 n 4 x x n 5 x n 8 x x n 3 n 6 x x n 7 x x  
+//          El arbol: n 1 n 2 n 4 x x n 5 x n 8 x x n 3 n 6 x x n 7 x x  
 //          tiene el esquema:
 //          -- 1
 //             |-- 3
@@ -143,15 +142,17 @@ void inordenNR(const ArbolBinario<int>& a){
             }
             else{
                 p.pop();
-                if (p.top() != 0){
-                    cout << p.top() << ' ';
-                    actual=a.derecha(p.top());
-                    p.push(actual);
+                actual=p.top();
+
+                // Mostramos el padre, nos vamos al hermano (excepto si se trataba de la raÃ­z)
+                if (actual != 0) {
+                        cout << a.etiqueta(actual) << ' ';
+                        p.pop();
+                        actual = a.derecha(actual);
+                        p.push(actual);
                 }
             }
         }
-        cout << "Pila último" << a.etiqueta(p.top()) << endl;
-        cin.get();
     }
 }
 /*
