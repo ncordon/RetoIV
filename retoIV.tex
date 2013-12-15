@@ -7,6 +7,11 @@
 \usepackage{listings}
 \usepackage{graphicx}
 \usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\input{spanishAlgorithmic.tex}
+
+\def\C++#1{\texttt{#1}}
 
 \everymath{\displaystyle}
 \def\O{\mathcal{O}}
@@ -30,12 +35,29 @@
 
  \item Diseñar un procedimiento inorden no recursivo a imagen y semejanza
  del procedimiento preorden no recursivo que el profesor diseñó en la clase:
- \leftskip=1cm
+ 
+ \bigskip
  \input{ejercicio1}
+ 
  \item Dar un procedimiento para guardar un árbol binario en disco de forma
  que se recupere la estructura jerárquica de forma unívoca usando el mínimo
  número de centinelas que veais posible.
  
+ Se propone lo siguiente:
+ 
+ Deseamos conocer para cada nodo del árbol si tiene dos hijos, sólo el
+ izquierdo, solo el derecho o ninguno. Se empleará el preorden del árbol
+ binario, haciendo que a cada nodo le preceda, caso de ser necesario, uno
+ de los tres centinelas siguientes:
+  
+ \begin{enumerate}
+ \item[i.] \texttt{<} Si le falta el hijo izquierdo
+ \item[ii.] \texttt{>} Si le falta el hijo derecho
+ \item[iii.] \texttt{-} Si no tiene hijos
+ \end{enumerate}
+ 
+ No se hará empleo de ningún centinela si el nodo tiene ambos hijos.
+   
  
 \end{enumerate}
 \end{document}
