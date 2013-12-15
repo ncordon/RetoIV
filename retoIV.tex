@@ -11,8 +11,6 @@
 \usepackage{algorithmic}
 \input{spanishAlgorithmic.tex}
 
-\def\C++#1{\texttt{#1}}
-
 \everymath{\displaystyle}
 \def\O{\mathcal{O}}
 \def\hora{3,6\cdot10^{9}}
@@ -31,17 +29,20 @@
 
 \begin{document}
 \maketitle
-\begin{enumerate}
+\section{Inorden no recursivo}
+ \textit{Diseñar un procedimiento inorden no recursivo a imagen y semejanza del 
+ procedimiento preorden no recursivo que el profesor diseñó en la clase.}
+ \
+ 
+ \leftskip=1em
+ \texttt{\input{ejercicio1}}
+  
+\leftskip=0em
+\section{Codificación de árbol binario} 
 
- \item Diseñar un procedimiento inorden no recursivo a imagen y semejanza
- del procedimiento preorden no recursivo que el profesor diseñó en la clase:
- 
- \bigskip
- \input{ejercicio1}
- 
- \item Dar un procedimiento para guardar un árbol binario en disco de forma
+\textit{Dar un procedimiento para guardar un árbol binario en disco de forma
  que se recupere la estructura jerárquica de forma unívoca usando el mínimo
- número de centinelas que veais posible.
+ número de centinelas que veais posible.}
  
  Se propone lo siguiente:
  
@@ -57,7 +58,5 @@
  \end{enumerate}
  
  No se hará empleo de ningún centinela si el nodo tiene ambos hijos.
-   
- 
-\end{enumerate}
+
 \end{document}
