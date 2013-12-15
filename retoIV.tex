@@ -6,7 +6,7 @@
 \usepackage{textcomp}
 \usepackage{listings}
 \usepackage{graphicx}
-\hyphenation{re-fe-ren-cia}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
 
 \everymath{\displaystyle}
 \def\O{\mathcal{O}}
@@ -19,7 +19,7 @@
 \def\C#1{\texttt{#1}}
 \def\figurename{Figura}
 %opening
-\title{Reto 1: Eficiencia}
+\title{Reto 4: Árboles}
 \author{Francisco David Charte Luque\and
         Ignacio Cordón Castillo}
 \date{}
@@ -30,10 +30,12 @@
 
  \item Diseñar un procedimiento inorden no recursivo a imagen y semejanza
  del procedimiento preorden no recursivo que el profesor diseñó en la clase:
- 
  \leftskip=1cm
- \begin{verbatim}
+ \input{ejercicio1}
+ \item Dar un procedimiento para guardar un árbol binario en disco de forma
+ que se recupere la estructura jerárquica de forma unívoca usando el mínimo
+ número de centinelas que veais posible.
  
- \end{verbatim}
+ 
 \end{enumerate}
 \end{document}

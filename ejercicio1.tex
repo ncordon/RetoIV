@@ -1,0 +1,37 @@
+% Generator: GNU source-highlight, by Lorenzo Bettini, http://www.gnu.org/software/src-highlite
+\noindent
+\mbox{}\textcolor{ForestGreen}{void}\ \textbf{\textcolor{Black}{inordenNR}}\textcolor{BrickRed}{(}\textbf{\textcolor{Blue}{const}}\ ArbolBinario\textcolor{BrickRed}{\textless{}}\textcolor{ForestGreen}{int}\textcolor{BrickRed}{\textgreater{}\&}\ a\textcolor{BrickRed}{)}\textcolor{Red}{\{} \\
+\mbox{}\ \ \ \ ArbolBinario\textcolor{BrickRed}{\textless{}}\textcolor{ForestGreen}{int}\textcolor{BrickRed}{\textgreater{}::}\textcolor{TealBlue}{Nodo}\ actual\textcolor{BrickRed}{;} \\
+\mbox{}\ \ \ \ \textcolor{TealBlue}{stack\textless{}ArbolBinario\textless{}int\textgreater{}::Nodo\textgreater{}}\ p\textcolor{BrickRed}{;} \\
+\mbox{}\ \ \ \  \\
+\mbox{}\ \ \ \ actual\textcolor{BrickRed}{=}a\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{raiz}}\textcolor{BrickRed}{();} \\
+\mbox{}\ \ \ \ p\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{push}}\textcolor{BrickRed}{(}ArbolBinario\textcolor{BrickRed}{\textless{}}\textcolor{ForestGreen}{int}\textcolor{BrickRed}{\textgreater{}::}nodo$\_$nulo\textcolor{BrickRed}{);} \\
+\mbox{}\ \ \ \ p\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{push}}\textcolor{BrickRed}{(}actual\textcolor{BrickRed}{);} \\
+\mbox{}\ \ \ \  \\
+\mbox{}\ \ \ \ \textbf{\textcolor{Blue}{while}}\ \textcolor{BrickRed}{(}actual\textcolor{BrickRed}{!=}ArbolBinario\textcolor{BrickRed}{\textless{}}\textcolor{ForestGreen}{int}\textcolor{BrickRed}{\textgreater{}::}nodo$\_$nulo\textcolor{BrickRed}{)}\textcolor{Red}{\{} \\
+\mbox{}\ \ \ \ \ \ \ \ \textbf{\textcolor{Blue}{if}}\ \textcolor{BrickRed}{(}a\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{izquierda}}\textcolor{BrickRed}{(}actual\textcolor{BrickRed}{)!=}ArbolBinario\textcolor{BrickRed}{\textless{}}\textcolor{ForestGreen}{int}\textcolor{BrickRed}{\textgreater{}::}nodo$\_$nulo\textcolor{BrickRed}{)}\textcolor{Red}{\{} \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ actual\textcolor{BrickRed}{=}\ a\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{izquierda}}\textcolor{BrickRed}{(}actual\textcolor{BrickRed}{);} \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ p\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{push}}\textcolor{BrickRed}{(}actual\textcolor{BrickRed}{);} \\
+\mbox{}\ \ \ \ \ \ \ \ \textcolor{Red}{\}} \\
+\mbox{}\ \ \ \ \ \ \ \ \textbf{\textcolor{Blue}{else}}\textcolor{Red}{\{} \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ cout\ \textcolor{BrickRed}{\textless{}\textless{}}\ a\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{etiqueta}}\textcolor{BrickRed}{(}actual\textcolor{BrickRed}{)}\ \textcolor{BrickRed}{\textless{}\textless{}}\ \texttt{\textcolor{Red}{'\ '}}\textcolor{BrickRed}{;} \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \textbf{\textcolor{Blue}{if}}\ \textcolor{BrickRed}{(}a\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{derecha}}\textcolor{BrickRed}{(}actual\textcolor{BrickRed}{)!=}ArbolBinario\textcolor{BrickRed}{\textless{}}\textcolor{ForestGreen}{int}\textcolor{BrickRed}{\textgreater{}::}nodo$\_$nulo\textcolor{BrickRed}{)}\textcolor{Red}{\{} \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ actual\textcolor{BrickRed}{=}a\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{derecha}}\textcolor{BrickRed}{(}actual\textcolor{BrickRed}{);} \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{pop}}\textcolor{BrickRed}{();} \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{push}}\textcolor{BrickRed}{(}actual\textcolor{BrickRed}{);} \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{Red}{\}} \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \textbf{\textcolor{Blue}{else}}\textcolor{Red}{\{} \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{pop}}\textcolor{BrickRed}{();} \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ actual\textcolor{BrickRed}{=}p\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{top}}\textcolor{BrickRed}{();} \\
+\mbox{} \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textit{\textcolor{Brown}{//\ Nos\ vamos\ al\ hermano\ (excepto\ si\ se\ trataba\ de\ la\ raíz)}} \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textbf{\textcolor{Blue}{if}}\ \textcolor{BrickRed}{(}actual\ \textcolor{BrickRed}{!=}\ ArbolBinario\textcolor{BrickRed}{\textless{}}\textcolor{ForestGreen}{int}\textcolor{BrickRed}{\textgreater{}::}nodo$\_$nulo\textcolor{BrickRed}{)}\ \textcolor{Red}{\{} \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ \textcolor{BrickRed}{\textless{}\textless{}}\ a\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{etiqueta}}\textcolor{BrickRed}{(}actual\textcolor{BrickRed}{)}\ \textcolor{BrickRed}{\textless{}\textless{}}\ \texttt{\textcolor{Red}{'\ '}}\textcolor{BrickRed}{;} \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{pop}}\textcolor{BrickRed}{();} \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ actual\ \textcolor{BrickRed}{=}\ a\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{derecha}}\textcolor{BrickRed}{(}actual\textcolor{BrickRed}{);} \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{push}}\textcolor{BrickRed}{(}actual\textcolor{BrickRed}{);} \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{Red}{\}} \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{Red}{\}} \\
+\mbox{}\ \ \ \ \ \ \ \ \textcolor{Red}{\}} \\
+\mbox{}\ \ \ \ \textcolor{Red}{\}} \\
+\mbox{}\textcolor{Red}{\}}
