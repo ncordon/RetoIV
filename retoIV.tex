@@ -61,6 +61,52 @@
  \end{enumerate}
  
  No se hará empleo de ningún centinela si el nodo tiene ambos hijos.
-
-
+   
+   \begin{algorithm}[H]
+   \begin{algorithmic}[1]
+  \REQUIRE \ \\
+      \texttt{bin\_tree}, Arból binario leído codificado\\  
+  \STATE{LLevamos una estructura pila llamada \texttt{nodos}
+         y otra llamada \texttt{hijos}}
+  \\\
+  \FOR{Cada uno de los caracteres de bin\_tree}
+    \IF{El carácter actual es \texttt{-},\texttt{>} o \texttt{<}}
+      \STATE{Lo introducimos en \texttt{hijos}}
+    \ELSE
+      \STATE{Lo introducimos en \texttt{nodos}}
+      \STATE{Introducimos * en \texttt{hijos}}
+    \ENDIF
+  \ENDFOR
+  \\\
+  \STATE{Creamos un nodo \texttt{raiz}}
+  \STATE{LLamamos al siguiente algoritmo con \texttt{raiz}
+         como \texttt{actual}}
+  \\\
+  \IF{Tope \texttt{hijos} $\neq$ \texttt{-} \AND
+      Tope \texttt{hijos} $\neq$ \texttt{<}}
+      \STATE{Hijo izquierda de \texttt{actual}
+             es el tope de \texttt{hijos}}
+      \STATE{Sacamos el último elemento de \texttt{hijos}
+        y de \texttt{nodos}}
+      \STATE{LLamamos al algoritmo para hijo izquierda de 
+            \texttt{actual}}
+  \ELSE
+    \STATE{Hijo izquierda de \texttt{actual} no existe}
+  \ENDIF
+  \\\
+  \IF{Tope \texttt{hijos} $\neq$ \texttt{-} \AND
+      Tope \texttt{hijos} $\neq$ \texttt{>}}
+    \STATE{Hijo derecha de \texttt{actual}
+            es el tope de \texttt{nodos}}
+    \STATE{Sacamos el último elemento de \texttt{hijos}
+            y de \texttt{nodos}}
+    \STATE{LLamamos al algoritmo para hijo derecha de 
+          \texttt{actual}}
+  \ELSE
+  \STATE{Hijo derecha de \texttt{actual} no existe}
+  \ENDIF
+   \end{algorithmic}
+   \caption{ALGORITMO DE RECUPERADO DEL ÁRBOL}
+   \label{Numeros}
+   \end{algorithm}
 \end{document}
