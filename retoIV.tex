@@ -65,16 +65,20 @@
    \begin{algorithm}[H]
    \begin{algorithmic}[1]
   \REQUIRE \ \\
-      \texttt{bin\_tree}, Arból binario leído codificado\\  
+      \texttt{bin\_tree}, Arból binario leído codificado\\\  
   \STATE{LLevamos una estructura pila llamada \texttt{nodos}
          y otra llamada \texttt{hijos}}
+  \STATE{\texttt{centinelas=\{-,<,>\}}}
   \\\
   \FOR{Cada uno de los caracteres de bin\_tree}
-    \IF{El carácter actual es \texttt{-},\texttt{>} o \texttt{<}}
+    \IF{\texttt{actual} $in$ \texttt{centinelas}}
       \STATE{Lo introducimos en \texttt{hijos}}
+      \STATE{Lo almacenamos como \texttt{anterior}}
     \ELSE
       \STATE{Lo introducimos en \texttt{nodos}}
-      \STATE{Introducimos * en \texttt{hijos}}
+      \IF{\texttt{anterior} $\notin$ \texttt{centinelas}}
+        \STATE{Introducimos * en \texttt{hijos}}
+      \ENDIF
     \ENDIF
   \ENDFOR
   \\\
@@ -95,7 +99,7 @@
   \ENDIF
   \\\
   \IF{Tope \texttt{hijos} $\neq$ \texttt{-} \AND
-      Tope \texttt{hijos} $\neq$ \texttt{>}}
+      Tope \texttt{hijos} $\neq$\texttt{>}}
     \STATE{Hijo derecha de \texttt{actual}
             es el tope de \texttt{nodos}}
     \STATE{Sacamos el último elemento de \texttt{hijos}
