@@ -6,11 +6,11 @@
 \mbox{}\ \ \ \ \textcolor{ForestGreen}{bool}\ subiendo\ \textcolor{BrickRed}{=}\ \textbf{\textcolor{Blue}{false}}\textcolor{BrickRed}{;}\ \ \ \  \\
 \mbox{} \\
 \mbox{}\ \ \ \ actual\textcolor{BrickRed}{=}a\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{raiz}}\textcolor{BrickRed}{();} \\
-\mbox{}\ \ \ \ p\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{push}}\textcolor{BrickRed}{(}\textcolor{Purple}{0}\textcolor{BrickRed}{);} \\
+\mbox{}\ \ \ \ p\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{push}}\textcolor{BrickRed}{(}ArbolBinario\textcolor{BrickRed}{\textless{}}\textcolor{ForestGreen}{int}\textcolor{BrickRed}{\textgreater{}::}nodo$\_$nulo\textcolor{BrickRed}{);} \\
 \mbox{}\ \ \ \ p\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{push}}\textcolor{BrickRed}{(}actual\textcolor{BrickRed}{);} \\
 \mbox{}\ \ \ \  \\
-\mbox{}\ \ \ \ \textbf{\textcolor{Blue}{while}}\ \textcolor{BrickRed}{(}actual\ \textcolor{BrickRed}{!=}\ \textcolor{Purple}{0}\textcolor{BrickRed}{)}\textcolor{Red}{\{} \\
-\mbox{}\ \ \ \ \ \ \ \ \textbf{\textcolor{Blue}{if}}\ \textcolor{BrickRed}{(}a\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{izquierda}}\textcolor{BrickRed}{(}actual\textcolor{BrickRed}{)}\ \textcolor{BrickRed}{!=}\ \textcolor{Purple}{0}\ \textcolor{BrickRed}{\&\&}\ \textcolor{BrickRed}{!}subiendo\textcolor{BrickRed}{)}\textcolor{Red}{\{} \\
+\mbox{}\ \ \ \ \textbf{\textcolor{Blue}{while}}\ \textcolor{BrickRed}{(}actual\ \textcolor{BrickRed}{!=}\ ArbolBinario\textcolor{BrickRed}{\textless{}}\textcolor{ForestGreen}{int}\textcolor{BrickRed}{\textgreater{}::}nodo$\_$nulo\textcolor{BrickRed}{)}\textcolor{Red}{\{} \\
+\mbox{}\ \ \ \ \ \ \ \ \textbf{\textcolor{Blue}{if}}\ \textcolor{BrickRed}{(}a\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{izquierda}}\textcolor{BrickRed}{(}actual\textcolor{BrickRed}{)}\ \textcolor{BrickRed}{!=}\ ArbolBinario\textcolor{BrickRed}{\textless{}}\textcolor{ForestGreen}{int}\textcolor{BrickRed}{\textgreater{}::}nodo$\_$nulo\ \textcolor{BrickRed}{\&\&}\ \textcolor{BrickRed}{!}subiendo\textcolor{BrickRed}{)}\textcolor{Red}{\{} \\
 \mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \textit{\textcolor{Brown}{//\ Pasamos\ a\ manejar\ el\ hijo\ izquierdo}} \\
 \mbox{}\ \ \ \ \ \ \ \ \ \ \ \ actual\ \textcolor{BrickRed}{=}\ a\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{izquierda}}\textcolor{BrickRed}{(}actual\textcolor{BrickRed}{);} \\
 \mbox{}\ \ \ \ \ \ \ \ \ \ \ \ p\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{push}}\textcolor{BrickRed}{(}actual\textcolor{BrickRed}{);} \\
@@ -19,7 +19,7 @@
 \mbox{}\ \ \ \ \ \ \ \ \ \ \ \ p\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{pop}}\textcolor{BrickRed}{();} \\
 \mbox{}\ \ \ \ \ \ \ \ \ \ \ \ subiendo\ \textcolor{BrickRed}{=}\ \textbf{\textcolor{Blue}{true}}\textcolor{BrickRed}{;} \\
 \mbox{}\ \ \ \ \ \ \ \ \ \ \ \  \\
-\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \textbf{\textcolor{Blue}{if}}\ \textcolor{BrickRed}{(}a\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{derecha}}\textcolor{BrickRed}{(}actual\textcolor{BrickRed}{)}\ \textcolor{BrickRed}{!=}\ \textcolor{Purple}{0}\textcolor{BrickRed}{)}\ \textcolor{Red}{\{} \\
+\mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \textbf{\textcolor{Blue}{if}}\ \textcolor{BrickRed}{(}a\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{derecha}}\textcolor{BrickRed}{(}actual\textcolor{BrickRed}{)}\ \textcolor{BrickRed}{!=}\ ArbolBinario\textcolor{BrickRed}{\textless{}}\textcolor{ForestGreen}{int}\textcolor{BrickRed}{\textgreater{}::}nodo$\_$nulo\textcolor{BrickRed}{)}\ \textcolor{Red}{\{} \\
 \mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textit{\textcolor{Brown}{//\ Pasamos\ a\ manejar\ el\ hijo\ derecho}} \\
 \mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ actual\ \textcolor{BrickRed}{=}\ a\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{derecha}}\textcolor{BrickRed}{(}actual\textcolor{BrickRed}{);} \\
 \mbox{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\textcolor{BrickRed}{.}\textbf{\textcolor{Black}{push}}\textcolor{BrickRed}{(}actual\textcolor{BrickRed}{);} \\
