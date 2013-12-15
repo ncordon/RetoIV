@@ -62,55 +62,68 @@
  
  No se hará empleo de ningún centinela si el nodo tiene ambos hijos.
    
-   \begin{algorithm}[H]
-   \begin{algorithmic}[1]
-  \REQUIRE \ \\
-      \texttt{bin\_tree}, Arból binario leído codificado\\\  
-  \STATE{LLevamos una estructura pila llamada \texttt{nodos}
-         y otra llamada \texttt{hijos}}
-  \STATE{\texttt{centinelas=\{-,<,>\}}}
-  \\\
-  \FOR{Cada uno de los caracteres de bin\_tree}
-    \IF{\texttt{actual} $in$ \texttt{centinelas}}
-      \STATE{Lo introducimos en \texttt{hijos}}
-      \STATE{Lo almacenamos como \texttt{anterior}}
-    \ELSE
-      \STATE{Lo introducimos en \texttt{nodos}}
-      \IF{\texttt{anterior} $\notin$ \texttt{centinelas}}
-        \STATE{Introducimos * en \texttt{hijos}}
-      \ENDIF
-    \ENDIF
-  \ENDFOR
-  \\\
-  \STATE{Creamos un nodo \texttt{raiz}}
-  \STATE{LLamamos al siguiente algoritmo con \texttt{raiz}
-         como \texttt{actual}}
-  \\\
-  \IF{Tope \texttt{hijos} $\neq$ \texttt{-} \AND
-      Tope \texttt{hijos} $\neq$ \texttt{<}}
-      \STATE{Hijo izquierda de \texttt{actual}
-             es el tope de \texttt{hijos}}
-      \STATE{Sacamos el último elemento de \texttt{hijos}
-        y de \texttt{nodos}}
-      \STATE{LLamamos al algoritmo para hijo izquierda de 
-            \texttt{actual}}
-  \ELSE
-    \STATE{Hijo izquierda de \texttt{actual} no existe}
-  \ENDIF
-  \\\
-  \IF{Tope \texttt{hijos} $\neq$ \texttt{-} \AND
-      Tope \texttt{hijos} $\neq$\texttt{>}}
-    \STATE{Hijo derecha de \texttt{actual}
-            es el tope de \texttt{nodos}}
-    \STATE{Sacamos el último elemento de \texttt{hijos}
-            y de \texttt{nodos}}
-    \STATE{LLamamos al algoritmo para hijo derecha de 
-          \texttt{actual}}
-  \ELSE
-  \STATE{Hijo derecha de \texttt{actual} no existe}
-  \ENDIF
-   \end{algorithmic}
-   \caption{ALGORITMO DE RECUPERADO DEL ÁRBOL}
-   \label{Numeros}
-   \end{algorithm}
+      \begin{algorithm}[H]
+      \begin{algorithmic}[1]
+     \REQUIRE \ \\
+         \texttt{bin\_tree}, árbol binario leído codificado\\\
+     
+     \STATE{Crear pila \texttt{nodos}, 
+            pila \texttt{hijos}}
+     \STATE{\texttt{centinelas = \{-,<,>\}}}
+     \\\
+     \FORALL{\texttt{elemento} $en$ \texttt{bin\_tree}}
+       \IF{\texttt{elemento} $\in$ \texttt{centinelas}}
+         \STATE{Apilar \texttt{elemento} en \texttt{hijos}}
+         \STATE{\texttt{anterior} $\gets$ \texttt{actual}}
+       \ELSE
+         \STATE{Apilar \texttt{elemento} en \texttt{nodos}}
+         \IF{\texttt{anterior} $\notin$ \texttt{centinelas}}
+           \STATE{Apilar * en \texttt{hijos}}
+         \ENDIF
+       \ENDIF
+     \ENDFOR
+     \\\
+     \STATE{Crear arbol \texttt{nuevo}}
+     \STATE{\texttt{raiz} $\gets$ raíz de \texttt{nuevo}}
+     \STATE{Llamar al algoritmo \ref{rec2} con parámetros \texttt{raiz}, \texttt{nodos}, \texttt{hijos}}
+     \\\
+     \RETURN \texttt{nuevo}
+      \end{algorithmic}
+      \caption{Recuperado del árbol (I)}
+      \label{rec1}
+      \end{algorithm}
+   
+      \begin{algorithm}[H]
+      \begin{algorithmic}[1]
+     \REQUIRE \ \\
+         \texttt{actual}, nodo sobre el que añadir descendientes\\
+         \texttt{nodos}, pila de nodos\\
+         \texttt{hijos}, pila de centinelas\\\  
+     \IF{Tope \texttt{hijos} $\neq$ \texttt{-} \AND
+         Tope \texttt{hijos} $\neq$ \texttt{<}}
+         \STATE{Hijo izquierda de \texttt{actual}
+                $\gets$ tope de \texttt{hijos}}
+         \STATE{Sacar el tope de \texttt{hijos}}
+         \STATE{Sacar el tope de \texttt{nodos}}
+         \STATE{Llamar al algoritmo \ref{rec2} con parámetros
+               \texttt{hijo izquierda de actual}, \texttt{nodos}, \texttt{hijos}}
+     \ELSE
+       \STATE{Hijo izquierda de \texttt{actual} $\gets \emptyset$}
+     \ENDIF
+     \\\
+     \IF{Tope \texttt{hijos} $\neq$ \texttt{-} \AND
+         Tope \texttt{hijos} $\neq$\texttt{>}}
+       \STATE{Hijo derecha de \texttt{actual}
+               $\gets$ tope de \texttt{nodos}}
+        \STATE{Sacar el tope de \texttt{hijos}}
+        \STATE{Sacar el tope de \texttt{nodos}}
+       \STATE{Llamar al algoritmo \ref{rec2} con parámetros 
+             \texttt{hijo derecha de actual}, \texttt{nodos}, \texttt{hijos}}
+     \ELSE
+         \STATE{Hijo derecha de \texttt{actual} $\gets \emptyset$}
+     \ENDIF
+      \end{algorithmic}
+      \caption{Recuperado del árbol (II)}
+      \label{rec2}
+      \end{algorithm}
 \end{document}
