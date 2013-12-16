@@ -96,16 +96,15 @@
  Para esta codificación, se tiene que en el peor caso posible para
  $n$ nodos(aquel en que a cada nodo le falta un hijo, y por tanto cada nodo va acompañado
  de un centinela), se usan $n-1$ centinelas; esto es, se tiene que se
- emplean $2n-1$ posiciones (entre centinelas y etiquetas)\\
- 
- Ilustración del peor caso en que se toman todos los nodos excepto la raíz como
+ emplean $2n-1$ posiciones (entre centinelas y etiquetas). 
+ El siguiente árbol ilustra este caso, tomando todos los nodos distintos de la raíz como
  hijos izquierdos del padre:\\
  
  \begin{center}
  \begin{minipage}{20pt}
     \begin{tikzpicture}
  \node{\Tree 
-  [.{a}
+  [.a
     [.b
         [.c
            [.d 
@@ -116,7 +115,7 @@
  \end{minipage}
  \end{center}
  
- En la que la codificación sería: \texttt{a>b>c>d>\ldots n}\\\
+ La codificación resultante del árbol sería: \texttt{a>b>c>d>\ldots n}.\\\
  
  El procedimiento se ha desarrollado en dos partes: la primera ejecuta una
  preparación de los datos, para un manejo recursivo por la segunda. Es conveniente
@@ -139,18 +138,17 @@
             pila \texttt{hijos}}
      \STATE{\texttt{centinelas $\gets$ \{-,<,>\}}}
      \\\
-     \FORALL{\texttt{elemento} $en$ \texttt{bin\_tree}, excepto el último}
+     \FORALL{\texttt{elemento} $en$ \texttt{bin\_tree}}
        \IF{\texttt{elemento} $\in$ \texttt{centinelas}}
          \STATE{Apilar \texttt{elemento} en \texttt{hijos}}
        \ELSE
          \STATE{Apilar \texttt{elemento} en \texttt{nodos}}
-         \IF{\texttt{posterior} $\notin$ \texttt{centinelas}}
+         \IF{$\nexists$ posterior a \texttt{elemento} \OR posterior a \texttt{elemento} $\notin$ \texttt{centinelas}}
            \STATE{Apilar * en \texttt{hijos}}
          \ENDIF
        \ENDIF
-       \STATE{\texttt{posterior} $\gets$ siguiente a \texttt{elemento}}
      \ENDFOR
-     \STATE{Apilar último elemento $en$ \texttt{bin\_tree} en \texttt{nodos}}
+     %\STATE{Apilar último elemento $en$ \texttt{bin\_tree} en \texttt{nodos}}
      \STATE{Apilar \texttt{-} en \texttt{hijos}}
      \\\
      \STATE{Crear árbol \texttt{nuevo}}
@@ -160,7 +158,7 @@
      \\\
      \RETURN \texttt{nuevo}
       \end{algorithmic}
-      \caption{Recuperado del árbol (I)}
+      \caption{Recuperación del árbol (I)}
       \label{rec1}
       \end{algorithm}
    
@@ -191,7 +189,7 @@
      \ENDIF
      \ENDIF
       \end{algorithmic}
-      \caption{Recuperado del árbol (II)}
+      \caption{Recuperación del árbol (II)}
       \label{rec2}
       \end{algorithm}
 \end{document}
