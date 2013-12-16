@@ -85,13 +85,12 @@
   ]};\\
  \end{tikzpicture}
  
- se obtendrá la codificación \texttt{abc-d>e-fg<h-ij-k-}.\\\
+ se obtendrá la codificación \texttt{abc-d>e-fg<h-ij-k-}.\\\ %ajustar ejemplo a posición de centinelas
  
  El procedimiento se ha desarrollado en dos partes: la primera ejecuta una
  preparación de los datos, para un manejo recursivo por la segunda.
   
  % Aclarar que se identifica el tipo nodo con el tipo etiqueta...
- % Ajustar la raíz?
    
       \begin{algorithm}[H]
       \begin{algorithmic}[1]
@@ -131,8 +130,10 @@
          \texttt{actual}, nodo sobre el que añadir descendientes\\
          \texttt{nodos}, pila de nodos\\
          \texttt{hijos}, pila de centinelas\\\  
-     \IF{tope de \texttt{hijos} $\neq$ \texttt{-}}
-     \IF{tope de \texttt{hijos} $\neq$ \texttt{<}}
+     
+     \STATE \texttt{centinela} $\gets$ tope de \texttt{hijos}
+     \IF{\texttt{centinela} $\neq$ \texttt{-}}
+     \IF{\texttt{centinela} $\neq$ \texttt{<}}
          \STATE{Hijo izquierda de \texttt{actual}
                 $\gets$ tope de \texttt{nodos}}
          \STATE{Sacar tope de \texttt{hijos}}
@@ -141,17 +142,20 @@
                \{hijo izquierda de \texttt{actual}, \texttt{nodos}, \texttt{hijos}\}}
      \ENDIF
      \\\
-     \IF{tope de \texttt{hijos} $\neq$\texttt{>}}
+     \IF{\texttt{centinela} $\neq$\texttt{>}}
        \STATE{Hijo derecha de \texttt{actual}
                $\gets$ tope de \texttt{nodos}}
-        \STATE{Sacar tope de \texttt{hijos}}
+        \IF{\texttt{centinela} $=$ \texttt{<}}
+        	\STATE{Sacar tope de \texttt{hijos}}
+        \ENDIF
         \STATE{Sacar tope de \texttt{nodos}}
        \STATE{Llamar al algoritmo \ref{rec2} con parámetros 
              \{hijo derecha de \texttt{actual}, \texttt{nodos}, \texttt{hijos}\}}
      \ENDIF
      \ELSE
-        \STATE{Hijo izquierda de \texttt{actual} $\gets \emptyset$}
-        \STATE{Hijo derecha de \texttt{actual} $\gets \emptyset$}
+        %\STATE{Hijo izquierda de \texttt{actual} $\gets \emptyset$}
+        %\STATE{Hijo derecha de \texttt{actual} $\gets \emptyset$}
+        \STATE Sacar tope de \texttt{hijos}
      \ENDIF
       \end{algorithmic}
       \caption{Recuperado del árbol (II)}
