@@ -71,8 +71,12 @@
  \item[iii.] \texttt{-} No tiene hijos
  \end{enumerate}
  
- No se hará empleo de ningún centinela si el nodo tiene ambos hijos. Veamos un ejemplo: para el árbol siguiente
+ No se hará empleo de ningún centinela si el nodo tiene ambos hijos,
+ ni tampoco tendrá centinela el último nodo, pues este 
+ siempre será \texttt{-}. Veamos un ejemplo: para el árbol siguiente
  
+ \begin{center}
+ \begin{minipage}{20pt}
  \begin{tikzpicture}
  \node{\Tree 
   [.{a} 
@@ -84,9 +88,35 @@
          [.i j k ] ]
   ]};\\
  \end{tikzpicture}
+ \end{minipage}
+ \end{center}
  
- se obtendrá la codificación \texttt{abc-d>e-fg<h-ij-k-}.\\\ %ajustar ejemplo a posición de centinelas \texttt{ab-c>d-ef<g-hi-j-k}
+ se obtendrá la codificación \texttt{abc-d>e-fg<h-ij-k}.\\\ %ajustar ejemplo a posición de centinelas \texttt{ab-c>d-ef<g-hi-j-k}
  
+ Para esta codificación, se tiene que en el peor caso posible para
+ $n$ nodos(aquel en que a cada nodo le falta un hijo, y por tanto cada nodo va acompañado
+ de un centinela), se usan $n-1$ centinelas; esto es, se tiene que se
+ emplean $2n-1$ posiciones (entre centinelas y etiquetas)\\
+ 
+ Ilustración del peor caso en que se toman todos los nodos excepto la raíz como
+ hijos izquierdos del padre:\\
+ 
+ \begin{center}
+ \begin{minipage}{20pt}
+    \begin{tikzpicture}
+ \node{\Tree 
+  [.{a}
+    [.b
+        [.c
+           [.d 
+            \edge[dashed] {};
+            [.n ]]]]
+  ]};\\
+ \end{tikzpicture}
+ \end{minipage}
+ \end{center}
+ 
+ En la que la codificación sería: \texttt{a>b>c>d>\ldots n}\\\
  
  El procedimiento se ha desarrollado en dos partes: la primera ejecuta una
  preparación de los datos, para un manejo recursivo por la segunda. Es conveniente
@@ -99,7 +129,7 @@
  de etiquetas a nodos).
   
  % Aclarar que se identifica el tipo nodo con el tipo etiqueta...
-   
+  
       \begin{algorithm}[H]
       \begin{algorithmic}[1]
      \REQUIRE \ \\
@@ -109,17 +139,19 @@
             pila \texttt{hijos}}
      \STATE{\texttt{centinelas $\gets$ \{-,<,>\}}}
      \\\
-     \FORALL{\texttt{elemento} $en$ \texttt{bin\_tree}}
+     \FORALL{\texttt{elemento} $en$ \texttt{bin\_tree}, excepto el último}
        \IF{\texttt{elemento} $\in$ \texttt{centinelas}}
          \STATE{Apilar \texttt{elemento} en \texttt{hijos}}
        \ELSE
          \STATE{Apilar \texttt{elemento} en \texttt{nodos}}
-         \IF{\texttt{anterior} $\notin$ \texttt{centinelas}}
+         \IF{\texttt{posterior} $\notin$ \texttt{centinelas}}
            \STATE{Apilar * en \texttt{hijos}}
          \ENDIF
        \ENDIF
-       \STATE{\texttt{anterior} $\gets$ \texttt{elemento}}
+       \STATE{\texttt{posterior} $\gets$ siguiente a \texttt{elemento}}
      \ENDFOR
+     \STATE{Apilar último elemento $en$ \texttt{bin\_tree} en \texttt{nodos}}
+     \STATE{Apilar \texttt{-} en \texttt{hijos}}
      \\\
      \STATE{Crear árbol \texttt{nuevo}}
      \STATE{Raíz de \texttt{nuevo} $\gets$ tope de \texttt{nodos}}
@@ -140,11 +172,11 @@
          \texttt{hijos}, pila de centinelas\\\  
      
      \STATE \texttt{centinela} $\gets$ tope de \texttt{hijos}
+     \STATE{Sacar tope de \texttt{hijos}}
      \IF{\texttt{centinela} $\neq$ \texttt{-}}
      \IF{\texttt{centinela} $\neq$ \texttt{<}}
          \STATE{Hijo izquierda de \texttt{actual}
                 $\gets$ tope de \texttt{nodos}}
-         \STATE{Sacar tope de \texttt{hijos}}
          \STATE{Sacar tope de \texttt{nodos}}
          \STATE{Llamar al algoritmo \ref{rec2} con parámetros
                \{hijo izquierda de \texttt{actual}, \texttt{nodos}, \texttt{hijos}\}}
@@ -153,17 +185,10 @@
      \IF{\texttt{centinela} $\neq$ \texttt{>}}
        \STATE{Hijo derecha de \texttt{actual}
                $\gets$ tope de \texttt{nodos}}
-        \IF{\texttt{centinela} $=$ \texttt{<}}
-        	\STATE{Sacar tope de \texttt{hijos}}
-        \ENDIF
         \STATE{Sacar tope de \texttt{nodos}}
        \STATE{Llamar al algoritmo \ref{rec2} con parámetros 
              \{hijo derecha de \texttt{actual}, \texttt{nodos}, \texttt{hijos}\}}
      \ENDIF
-     \ELSE
-        %\STATE{Hijo izquierda de \texttt{actual} $\gets \emptyset$}
-        %\STATE{Hijo derecha de \texttt{actual} $\gets \emptyset$}
-        \STATE Sacar tope de \texttt{hijos}
      \ENDIF
       \end{algorithmic}
       \caption{Recuperado del árbol (II)}
