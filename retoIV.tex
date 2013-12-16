@@ -66,9 +66,9 @@
  de los tres centinelas siguientes:
   
  \begin{enumerate}
- \item[i.] \texttt{<} Si le falta el hijo izquierdo
- \item[ii.] \texttt{>} Si le falta el hijo derecho
- \item[iii.] \texttt{-} Si no tiene hijos
+ \item[i.] \texttt{<} Le falta el hijo izquierdo
+ \item[ii.] \texttt{>} Le falta el hijo derecho
+ \item[iii.] \texttt{-} No tiene hijos
  \end{enumerate}
  
  No se hará empleo de ningún centinela si el nodo tiene ambos hijos. Veamos un ejemplo: para el árbol siguiente
@@ -85,10 +85,18 @@
   ]};\\
  \end{tikzpicture}
  
- se obtendrá la codificación \texttt{abc-d>e-fg<h-ij-k-}.\\\ %ajustar ejemplo a posición de centinelas
+ se obtendrá la codificación \texttt{abc-d>e-fg<h-ij-k-}.\\\ %ajustar ejemplo a posición de centinelas \texttt{ab-c>d-ef<g-hi-j-k}
+ 
  
  El procedimiento se ha desarrollado en dos partes: la primera ejecuta una
- preparación de los datos, para un manejo recursivo por la segunda.
+ preparación de los datos, para un manejo recursivo por la segunda. Es conveniente
+ aclarar que algoritmo \ref{rec2} trabaja directamente con los
+ datos, no con una copia, es decir, está modificando en cada ejecución
+ el árbol \texttt{nuevo} y las pilas \texttt{hijos} y \texttt{nodos} que se pasan 
+ desde el algoritmo \ref{rec1}. Además, para evitar añadir complejidad
+ innecesaria a la descripción de los algoritmos, se han identificado los
+ tipos de dato del nodo del árbol y el de la etiqueta (se realizan asignaciones
+ de etiquetas a nodos).
   
  % Aclarar que se identifica el tipo nodo con el tipo etiqueta...
    
@@ -142,7 +150,7 @@
                \{hijo izquierda de \texttt{actual}, \texttt{nodos}, \texttt{hijos}\}}
      \ENDIF
      \\\
-     \IF{\texttt{centinela} $\neq$\texttt{>}}
+     \IF{\texttt{centinela} $\neq$ \texttt{>}}
        \STATE{Hijo derecha de \texttt{actual}
                $\gets$ tope de \texttt{nodos}}
         \IF{\texttt{centinela} $=$ \texttt{<}}
