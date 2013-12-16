@@ -85,7 +85,10 @@
   ]};\\
  \end{tikzpicture}
  
- se obtendrá la codificación \texttt{abc-d>e-fg<h-ij-k-}.
+ se obtendrá la codificación \texttt{abc-d>e-fg<h-ij-k-}.\\\
+ 
+ El procedimiento se ha desarrollado en dos partes: la primera ejecuta una
+ preparación de los datos, para un manejo recursivo por la segunda.
   
  % Aclarar que se identifica el tipo nodo con el tipo etiqueta...
  % Ajustar la raíz?
@@ -102,18 +105,19 @@
      \FORALL{\texttt{elemento} $en$ \texttt{bin\_tree}}
        \IF{\texttt{elemento} $\in$ \texttt{centinelas}}
          \STATE{Apilar \texttt{elemento} en \texttt{hijos}}
-         \STATE{\texttt{anterior} $\gets$ \texttt{actual}}
        \ELSE
          \STATE{Apilar \texttt{elemento} en \texttt{nodos}}
          \IF{\texttt{anterior} $\notin$ \texttt{centinelas}}
            \STATE{Apilar * en \texttt{hijos}}
          \ENDIF
        \ENDIF
+       \STATE{\texttt{anterior} $\gets$ \texttt{elemento}}
      \ENDFOR
      \\\
      \STATE{Crear árbol \texttt{nuevo}}
-     \STATE{\texttt{raiz} $\gets$ raíz de \texttt{nuevo}}
-     \STATE{Llamar al algoritmo \ref{rec2} con parámetros \texttt{raiz}, \texttt{nodos}, \texttt{hijos}}
+     \STATE{Raíz de \texttt{nuevo} $\gets$ tope de \texttt{nodos}}
+     \STATE{Sacar tope de \texttt{nodos}}
+     \STATE{Llamar al algoritmo \ref{rec2} con parámetros \{raíz de \texttt{nodos}, \texttt{nodos}, \texttt{hijos}\}}
      \\\
      \RETURN \texttt{nuevo}
       \end{algorithmic}
@@ -127,28 +131,27 @@
          \texttt{actual}, nodo sobre el que añadir descendientes\\
          \texttt{nodos}, pila de nodos\\
          \texttt{hijos}, pila de centinelas\\\  
-     \IF{tope de \texttt{hijos} $\neq$ \texttt{-} \AND
-         tope de \texttt{hijos} $\neq$ \texttt{<}}
+     \IF{tope de \texttt{hijos} $\neq$ \texttt{-}}
+     \IF{tope de \texttt{hijos} $\neq$ \texttt{<}}
          \STATE{Hijo izquierda de \texttt{actual}
-                $\gets$ tope de \texttt{hijos}}
-         \STATE{Sacar el tope de \texttt{hijos}}
-         \STATE{Sacar el tope de \texttt{nodos}}
+                $\gets$ tope de \texttt{nodos}}
+         \STATE{Sacar tope de \texttt{hijos}}
+         \STATE{Sacar tope de \texttt{nodos}}
          \STATE{Llamar al algoritmo \ref{rec2} con parámetros
-               \texttt{hijo izquierda de actual}, \texttt{nodos}, \texttt{hijos}}
-     \ELSE
-       \STATE{Hijo izquierda de \texttt{actual} $\gets \emptyset$}
+               \{hijo izquierda de \texttt{actual}, \texttt{nodos}, \texttt{hijos}\}}
      \ENDIF
      \\\
-     \IF{tope de \texttt{hijos} $\neq$ \texttt{-} \AND
-         tope de \texttt{hijos} $\neq$\texttt{>}}
+     \IF{tope de \texttt{hijos} $\neq$\texttt{>}}
        \STATE{Hijo derecha de \texttt{actual}
                $\gets$ tope de \texttt{nodos}}
-        \STATE{Sacar el tope de \texttt{hijos}}
-        \STATE{Sacar el tope de \texttt{nodos}}
+        \STATE{Sacar tope de \texttt{hijos}}
+        \STATE{Sacar tope de \texttt{nodos}}
        \STATE{Llamar al algoritmo \ref{rec2} con parámetros 
-             \texttt{hijo derecha de actual}, \texttt{nodos}, \texttt{hijos}}
+             \{hijo derecha de \texttt{actual}, \texttt{nodos}, \texttt{hijos}\}}
+     \ENDIF
      \ELSE
-         \STATE{Hijo derecha de \texttt{actual} $\gets \emptyset$}
+        \STATE{Hijo izquierda de \texttt{actual} $\gets \emptyset$}
+        \STATE{Hijo derecha de \texttt{actual} $\gets \emptyset$}
      \ENDIF
       \end{algorithmic}
       \caption{Recuperado del árbol (II)}
