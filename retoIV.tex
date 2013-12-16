@@ -10,7 +10,10 @@
 \usepackage{algorithm}
 \usepackage{algorithmic}
 \input{spanishAlgorithmic.tex}
-\usepackage{pstricks,pst-node,pst-tree}
+%\usepackage{pstricks,pst-node,pst-tree}
+\usepackage{tikz}
+\usetikzlibrary{trees}
+\usepackage{tikz-qtree}
 
 \everymath{\displaystyle}
 \def\O{\mathcal{O}}
@@ -22,6 +25,7 @@
 \def\Problema#1#2{\textbf{Problema #1} \textsl{#2}\\}
 \def\C#1{\texttt{#1}}
 \def\figurename{Figura}
+\setlength{\parindent}{0cm}
 %opening
 \title{Reto 4: Árboles}
 \author{Francisco David Charte Luque\and
@@ -32,26 +36,33 @@
 \maketitle
 \section{Inorden no recursivo}
         \textit{Diseñar un procedimiento inorden no recursivo a imagen y semejanza
-        del procedimiento preorden no recursivo que el profesor diseñó en la clase.}
-
- \ 
+        del procedimiento preorden no recursivo que el profesor diseñó en la clase.}\\\
+ 
+ La idea seguida en el procedimiento de inorden iterativo es acumular en una pila
+ cada elemento pendiente de mostrar, e ir descendiendo en los hijos izquierda de cada nodo
+ hasta encontrar una hoja. Entonces, se imprime la hoja y se comienza a ascender
+ por el árbol, mostrando los padres y entrando en los hijos derecha. Cada vez que se pasa por un
+ nodo nuevo (que no se haya visitado antes), se reinicia la búsqueda en los hijos izquierda.\\\
+ 
+ A continuación mostramos la implementación del método en C++:\\\
  
  \leftskip=1em
  \small
  \texttt{\input{ejercicio1}}
  \normalsize
- 
  \leftskip=0em
+ 
  \section{Codificación de árbol binario}
          \textit{Dar un procedimiento para guardar un árbol binario en disco de forma que se
          recupere la estructura jerárquica de forma unívoca usando el mínimo número
-         de centinelas que veais posible.}
-         
-  Se propone lo siguiente:
+         de centinelas que veais posible.}\\\
  
- Deseamos conocer para cada nodo del árbol si tiene dos hijos, sólo el
- izquierdo, solo el derecho o ninguno. Se empleará el preorden del árbol
- binario, haciendo que a cada nodo le preceda, caso de ser necesario, uno
+ 
+ El método escogido consiste en especificar, para cada nodo del árbol binario, 
+ la manera en que se estructuran sus hijos. Es decir, en la codificación 
+ podremos conocer si un nodo tiene dos hijos, sólo el
+ izquierdo, solo el derecho o ninguno. Para ello, se recorrerá el árbol en preorden,
+ añadiendo después de cada nodo, en caso de ser necesario, uno
  de los tres centinelas siguientes:
   
  \begin{enumerate}
@@ -60,7 +71,24 @@
  \item[iii.] \texttt{-} Si no tiene hijos
  \end{enumerate}
  
- No se hará empleo de ningún centinela si el nodo tiene ambos hijos.
+ No se hará empleo de ningún centinela si el nodo tiene ambos hijos. Veamos un ejemplo: para el árbol siguiente
+ 
+ \begin{tikzpicture}
+ \node{\Tree 
+  [.{a} 
+     [.b
+         [.c ]
+         [.d e $\emptyset$ ] ]
+     [.f
+         [.g $\emptyset$ h ]
+         [.i j k ] ]
+  ]};\\
+ \end{tikzpicture}
+ 
+ se obtendrá la codificación \texttt{abc-d>e-fg<h-ij-k-}.
+  
+ % Aclarar que se identifica el tipo nodo con el tipo etiqueta...
+ % Ajustar la raíz?
    
       \begin{algorithm}[H]
       \begin{algorithmic}[1]
@@ -69,7 +97,7 @@
      
      \STATE{Crear pila \texttt{nodos}, 
             pila \texttt{hijos}}
-     \STATE{\texttt{centinelas = \{-,<,>\}}}
+     \STATE{\texttt{centinelas $\gets$ \{-,<,>\}}}
      \\\
      \FORALL{\texttt{elemento} $en$ \texttt{bin\_tree}}
        \IF{\texttt{elemento} $\in$ \texttt{centinelas}}
@@ -83,7 +111,7 @@
        \ENDIF
      \ENDFOR
      \\\
-     \STATE{Crear arbol \texttt{nuevo}}
+     \STATE{Crear árbol \texttt{nuevo}}
      \STATE{\texttt{raiz} $\gets$ raíz de \texttt{nuevo}}
      \STATE{Llamar al algoritmo \ref{rec2} con parámetros \texttt{raiz}, \texttt{nodos}, \texttt{hijos}}
      \\\
@@ -99,8 +127,8 @@
          \texttt{actual}, nodo sobre el que añadir descendientes\\
          \texttt{nodos}, pila de nodos\\
          \texttt{hijos}, pila de centinelas\\\  
-     \IF{Tope \texttt{hijos} $\neq$ \texttt{-} \AND
-         Tope \texttt{hijos} $\neq$ \texttt{<}}
+     \IF{tope de \texttt{hijos} $\neq$ \texttt{-} \AND
+         tope de \texttt{hijos} $\neq$ \texttt{<}}
          \STATE{Hijo izquierda de \texttt{actual}
                 $\gets$ tope de \texttt{hijos}}
          \STATE{Sacar el tope de \texttt{hijos}}
@@ -111,8 +139,8 @@
        \STATE{Hijo izquierda de \texttt{actual} $\gets \emptyset$}
      \ENDIF
      \\\
-     \IF{Tope \texttt{hijos} $\neq$ \texttt{-} \AND
-         Tope \texttt{hijos} $\neq$\texttt{>}}
+     \IF{tope de \texttt{hijos} $\neq$ \texttt{-} \AND
+         tope de \texttt{hijos} $\neq$\texttt{>}}
        \STATE{Hijo derecha de \texttt{actual}
                $\gets$ tope de \texttt{nodos}}
         \STATE{Sacar el tope de \texttt{hijos}}
